@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Pomodoro Azul</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/clime.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body class="work-mode">
+  <div class="background"></div>
+
+  <!-- Cabeçalho com Título no Canto Superior Esquerdo -->
+  <header>
+    <h1 class="site-title">Cinnamoroll Pomodoro</h1>
+  </header>
+
+  <!-- Pomodoro -->
+  <div class="pomodoro-box">
+    <div class="timer" id="timer">25:00</div>
+    <div class="timer-controls">
+      <button class="timer-button" onclick="startTimer()">Start</button>
+      <button class="timer-button" onclick="resetTimer()">Reset</button>
+    </div>
+    <div class="mode-buttons">
+      <button onclick="switchMode('work')">Trabalho ☁️</button>
+      <button onclick="switchMode('short-break')">Descanso 🛏️</button>
+      <button onclick="switchMode('long-break')">Descanso Longo 🌙</button>
+    </div>
+  </div>
+
+  <!-- Lista de Tarefas -->
+  <div class="task-box">
+    <h2>✨ Tarefas </h2>
+    <form id="task-form">
+      <input type="text" id="task-input" placeholder="Escreva uma tarefa...">
+      <button type="submit">➕</button>
+    </form>
+    <ul id="tasks">
+      <!-- Exemplo de item com ícone de exclusão -->
+      <li>
+        Exemplo de Tarefa
+        <span class="delete-task" onclick="deleteTask(this)">🗑️</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Gatinho Dormindo -->
+  <img src="/static/images/sleeping-cat.gif" class="sleeping-cat" alt="😴">
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
