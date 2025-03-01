@@ -1,0 +1,14 @@
+.sleeping-cat {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 180px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .short-break-mode .sleeping-cat,
+  .long-break-mode .sleeping-cat {
+    opacity: 1;
+  }

@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+@import 'base/variables.css';
+@import 'base/reset.css';
+
+@import 'components/timer.css';
+@import 'components/tasks.css';
+@import 'components/cat.css';
+@import 'components/weather.css';
+
+@import 'layout/header.css';
+@import 'layout/background.css';
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .pomodoro-box {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  #timer {
+    font-size: 3em;
+  }
+
+  .controls button {
+    padding: 10px 20px;
+  }
+
+  .task-box {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .sleeping-cat {
+    width: 120px;
+    bottom: 20px;
+    right: 20px;
+  }
+}

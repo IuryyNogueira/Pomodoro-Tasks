@@ -1,0 +1,58 @@
+.task-box {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 600px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    backdrop-filter: blur(5px);
+  }
+  
+  #task-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+  
+  #task-input {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid var(--cinnamoroll-blue);
+    border-radius: 12px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+  }
+  
+  #task-input:focus {
+    outline: none;
+    border-color: #0073ff;
+  }
+  
+  #task-form button {
+    background: var(--cinnamoroll-blue);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  #tasks li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin: 10px 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+    animation: slideIn 0.15s ease;
+  }
+  
+  #tasks li:hover {
+    transform: translateX(5px);
+  }

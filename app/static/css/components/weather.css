@@ -1,0 +1,24 @@
+.weather-card {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 12px var(--shadow);
+  }
+  
+  #weather-icon {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 2px 4px var(--shadow));
+  }
+  
+  #temp {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cinnamoroll-blue);
+  }
