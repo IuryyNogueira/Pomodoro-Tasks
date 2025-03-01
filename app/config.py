@@ -1,8 +1,8 @@
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 class Config:
-    HG_API_KEY = os.getenv('HG_API_KEY')
-    DATA_FILE = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../data/tasks.json')
+    # Configurações básicas
+    SECRET_KEY = os.getenv('FLASK_SECRET_KEY', 'dev-secret-' + os.urandom(16).hex())
+    SESSION_TYPE = 'filesystem'
+    STATIC_FOLDER = 'static'
+    TEMPLATES_FOLDER = 'templates'

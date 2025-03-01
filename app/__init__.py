@@ -5,15 +5,14 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object('app.config.Config')
     
-    # Configurações de sessão
-    app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-123')
+    # Configuração segura da chave secreta
+    app.secret_key = os.getenv('FLASK_SECRET_KEY', os.urandom(24))
     
     # Registrar blueprints
-    from app.routes.main import bp as main_bp  # 👈 Novo
-    from app.routes import tasks, weather
+    from .routes import tasks, weather, main  # Imports relativos
     
-    app.register_blueprint(main_bp)  # 👈 Registrar primeiro
     app.register_blueprint(tasks.bp)
     app.register_blueprint(weather.bp)
+    app.register_blueprint(main.bp)
     
     return app
