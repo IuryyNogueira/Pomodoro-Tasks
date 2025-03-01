@@ -16,3 +16,5 @@ def create_app():
     app.register_blueprint(main.bp)
     
     return app
+
+app = create_app()  # Expose the app object directly

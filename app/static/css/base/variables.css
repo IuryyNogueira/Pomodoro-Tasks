@@ -1,7 +1,7 @@
 :root {
-    --cinnamoroll-blue: #A7D8FF;
-    --short-break-purple: #B19CD9;
-    --long-break-indigo: #000000;
-    --soft-white: #FFF9FB;
-    --shadow: rgba(0, 0, 0, 0.1);
-  }
+  --cinnamoroll-blue: #a7d8ff;
+  --short-break-purple: #b19cd9;
+  --long-break-indigo: #000000;
+  --soft-white: #fff9fb;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
