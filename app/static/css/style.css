@@ -209,3 +209,38 @@ body {
 .weather-widget p {
   margin: 5px 0;
 }
+
+.task-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px; /* Adjust gap as needed */
+  margin-bottom: 20px; /* Maintain spacing below */
+}
+
+/* Optional: Refine the group form for a cohesive look */
+.group-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.group-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.group-form button {
+  padding: 10px 20px;
+  background-color: var(--cinnamoroll-blue);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.group-form button:hover {
+  background-color: #00acc1;
+}
