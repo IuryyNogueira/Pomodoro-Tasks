@@ -1,58 +1,102 @@
+/* tasks.css – Estilos para a To-Do List */
+
+/* Variáveis globais */
+:root {
+  --primary-color: #0073ff;
+  --cinnamoroll-blue: #00aaff; /* Ajuste conforme sua paleta */
+  --border-radius: 12px;
+  --box-shadow-light: 0 8px 20px rgba(0, 0, 0, 0.05);
+  --transition-speed: 0.3s;
+  --padding-base: 12px;
+  --font-size-base: 1em;
+}
+
+/* Caixa de tarefa */
 .task-box {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    padding: 25px;
-    margin: 30px auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 90%;
+  box-shadow: var(--box-shadow-light);
+  backdrop-filter: blur(5px);
+}
+
+/* Formulário de tarefa */
+#task-form {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+#task-input {
+  flex: 1;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--cinnamoroll-blue);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-base);
+  transition: border-color var(--transition-speed) ease;
+}
+
+#task-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+#task-form button {
+  background: var(--cinnamoroll-blue);
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  color: white;
+  font-size: 1.1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Lista de tarefas */
+#tasks li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin: 10px 0;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  animation: slideIn 0.15s ease;
+}
+
+#tasks li:hover {
+  transform: translateX(5px);
+}
+
+/* Animação para entrada de itens */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Media Queries para ajustes */
+@media (min-width: 768px) {
+  .task-box {
     max-width: 600px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    backdrop-filter: blur(5px);
+    padding: 25px;
   }
-  
-  #task-form {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 25px;
-  }
-  
-  #task-input {
-    flex: 1;
-    padding: 12px 20px;
-    border: 2px solid var(--cinnamoroll-blue);
-    border-radius: 12px;
-    font-size: 1em;
-    transition: border-color 0.3s ease;
-  }
-  
-  #task-input:focus {
-    outline: none;
-    border-color: #0073ff;
-  }
-  
+}
+
+@media (max-width: 480px) {
   #task-form button {
-    background: var(--cinnamoroll-blue);
-    border: none;
-    padding: 12px 20px;
-    border-radius: 12px;
-    color: white;
-    font-size: 1.1em;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    padding: 5px 10px;
+    font-size: 0.8em;
   }
-  
-  #tasks li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    margin: 10px 0;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
-    animation: slideIn 0.15s ease;
-  }
-  
-  #tasks li:hover {
-    transform: translateX(5px);
-  }
+}
