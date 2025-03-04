@@ -23,28 +23,6 @@
   }
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
-  .pomodoro-box {
-    margin: 20px;
-    padding: 20px;
-  }
-
-  #timer {
-    font-size: 3em;
-  }
-
-  .controls button {
-    padding: 10px 20px;
-  }
-
-  .sleeping-cat {
-    width: 120px;
-    bottom: 20px;
-    right: 20px;
-  }
-}
-
 body {
   font-family: "Nunito", sans-serif;
   min-height: 100vh;

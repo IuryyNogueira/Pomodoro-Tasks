@@ -1,0 +1,255 @@
+/* Responsiveness for pomodoro-box */
+@media (max-width: 1024px) {
+  .pomodoro-box {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  #timer {
+    font-size: 3em;
+  }
+
+  .timer-controls button {
+    padding: 10px 20px;
+  }
+
+  .mode-buttons button {
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pomodoro-box {
+    margin: 15px;
+    padding: 15px;
+  }
+
+  #timer {
+    font-size: 2.5em;
+  }
+
+  .timer-controls button {
+    padding: 8px 15px;
+  }
+
+  .mode-buttons button {
+    padding: 8px 15px;
+  }
+
+  .mode-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mode-buttons button {
+    padding: 12px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .pomodoro-box {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  #timer {
+    font-size: 2em;
+  }
+
+  .timer-controls button {
+    padding: 5px 10px;
+  }
+
+  .mode-buttons button {
+    padding: 5px 10px;
+  }
+
+  .mode-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mode-buttons button {
+    padding: 10px;
+    font-size: 0.8em;
+  }
+}
+
+/* Responsiveness for task-box */
+@media (max-width: 1024px) {
+  .task-box {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .task-box {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .task-box h2 {
+    font-size: 1.2em;
+  }
+
+  .task-box form {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .task-box input,
+  .task-box select,
+  .task-box button {
+    padding: 8px;
+  }
+
+  .task-box ul {
+    padding: 0;
+  }
+
+  .task-box li {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-box {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .task-box h2 {
+    font-size: 1em;
+  }
+
+  .task-box form {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .task-box input,
+  .task-box select,
+  .task-box button {
+    padding: 5px;
+  }
+
+  .task-box ul {
+    padding: 0;
+  }
+
+  .task-box li {
+    padding: 5px;
+  }
+}
+
+/* Responsiveness for sleeping-cat */
+@media (max-width: 1024px) {
+  .sleeping-cat {
+    width: 120px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sleeping-cat {
+    width: 100px;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sleeping-cat {
+    width: 80px;
+    bottom: 5px;
+    right: 5px;
+  }
+}
+
+/* Responsiveness for weather-widget */
+@media (max-width: 1024px) {
+  .weather-widget {
+    top: 60px;
+    right: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .weather-widget {
+    top: 50px;
+    right: 5px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .weather-widget {
+    top: 40px;
+    right: 5px;
+    padding: 5px;
+  }
+}
+
+/* Vertical orientation adjustments */
+@media (max-height: 600px) {
+  .pomodoro-box {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  #timer {
+    font-size: 2em;
+  }
+
+  .timer-controls button {
+    padding: 5px 10px;
+  }
+
+  .mode-buttons button {
+    padding: 5px 10px;
+  }
+
+  .task-box {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .task-box h2 {
+    font-size: 1em;
+  }
+
+  .task-box form {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .task-box input,
+  .task-box select,
+  .task-box button {
+    padding: 5px;
+  }
+
+  .task-box ul {
+    padding: 0;
+  }
+
+  .task-box li {
+    padding: 5px;
+  }
+
+  .sleeping-cat {
+    width: 80px;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .weather-widget {
+    top: 40px;
+    right: 5px;
+    padding: 5px;
+  }
+}

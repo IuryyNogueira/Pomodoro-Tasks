@@ -2,11 +2,12 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pomodoro Azul</title>
     <link rel="stylesheet" href="/static/css/style.css" />
     <link
       rel="icon"
-      href="{{ url_for('static', filename='images/favicon.ico') }}"
+      href="{{ url_for('static', filename='images/new-icon.ico') }}"
       type="image/x-icon"
     />
   </head>
@@ -37,19 +38,23 @@
       <div class="task-box" style="width: 80%">
         <h2>✨ Tarefas</h2>
         <form id="group-form">
-          <input type="text" id="group-input" placeholder="Nome novo grupo..." />
-          <button type="submit">Create</button>
+          <input
+            type="text"
+            id="group-input"
+            placeholder="Nome novo grupo..."
+          />
+          <button type="submit">+</button>
         </form>
         <div class="group-tabs" id="group-tabs">
           <!-- Group tabs will be added here dynamically -->
         </div>
         <form id="task-form">
-          <input type="text" id="task-input" placeholder="New task" />
+          <input type="text" id="task-input" placeholder="Nova tarefa..." />
           <select id="group-select">
             <option value="General">Geral</option>
             <!-- Additional groups will be added here dynamically -->
           </select>
-          <button type="submit">Nova tarefa</button>
+          <button type="submit">+</button>
         </form>
         <ul id="tasks">
           <!-- Exemplo de item com ícone de exclusão -->
