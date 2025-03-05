@@ -4,8 +4,8 @@ let currentMode = "work";
 
 const modes = {
   work: { time: 25, bg: "work-mode" },
-  "short-break": { time: 5, bg: "short-break-mode" },
-  "long-break": { time: 15, bg: "long-break-mode" },
+  "short-break": { time: 8, bg: "short-break-mode" },
+  "long-break": { time: 26, bg: "long-break-mode" },
 };
 
 // Gera ou recupera um ID único para o usuário

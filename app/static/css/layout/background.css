@@ -40,32 +40,26 @@
 }
 
 .short-break-mode .background {
-  background: radial-gradient(
-      circle at 50% 20%,
-      var(--short-break-purple),
-      #9370db
-    ),
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(255, 255, 255, 0.1) 10px,
-      rgba(255, 255, 255, 0.1) 20px
-    );
+  background: 
+  url("/static/images/tardeN.png") repeat-x, /* Nuvens animadas */
+  url("/static/images/tardE.png") center/cover no-repeat; /* GIF animado como fundo */
+
+animation: nclouds 20s linear infinite;
 }
 
 .long-break-mode .background {
-  background: linear-gradient(
-      to bottom right,
-      var(--long-break-indigo),
-      #483d8b
-    ),
-    repeating-radial-gradient(
-      circle at 50% 50%,
-      transparent,
-      transparent 15px,
-      rgba(255, 255, 255, 0.05) 15px,
-      rgba(255, 255, 255, 0.05) 30px
-    );
-  background-blend-mode: overlay;
+  background: 
+    url("/static/images/nightT.png") repeat-x, /* Nuvens animadas */
+    url("/static/images/night.gif") center/cover no-repeat; /* GIF animado como fundo */
+  
+  animation: nclouds 20s linear infinite;
+}
+
+@keyframes nclouds {
+  from {
+    background-position: 0 0, center;
+  }
+  to {
+    background-position: 100% 0, center;
+  }
 }
