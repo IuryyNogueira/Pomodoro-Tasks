@@ -1,8 +1,7 @@
 # Pomodoro Tasks
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="app/static/images/tela.png" alt="Screenshot do site" style="width: 45%;">
-  <img src="app/static/images/ex.gif" alt="Screenshot do site" style="width: 45%;">
+  <img src="app/static/images/ex.gif" alt="Screenshot do site" style="width:">
 </div>
 
 🚀 **Aviso:** O site pode demorar um pouco para carregar devido ao uso do plano gratuito da Render.
