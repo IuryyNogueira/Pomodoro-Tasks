@@ -39,12 +39,30 @@ function saveGroups(groups) {
 function loadGroups() {
   const userId = getUserId();
   const groups = localStorage.getItem(`groups_${userId}`);
-  return groups ? JSON.parse(groups) : ["General"];
+  return groups ? JSON.parse(groups) : ["Todas"];
+}
+
+// Sound Effects
+const buttonSound = new Audio("/static/sounds/button.mp3");
+const levelUpSound = new Audio("/static/sounds/level-up.mp3");
+
+buttonSound.addEventListener("canplaythrough", () =>
+  console.log("Button sound loaded")
+);
+levelUpSound.addEventListener("canplaythrough", () =>
+  console.log("Level-up sound loaded")
+);
+
+// Request Notification Permission
+if (Notification.permission !== "granted") {
+  Notification.requestPermission();
 }
 
 // Timer
 function startTimer() {
   if (!timerId) {
+    console.log("Playing button sound");
+    buttonSound.play();
     timerId = setInterval(() => {
       timeLeft--;
       updateTimerDisplay();
@@ -52,7 +70,9 @@ function startTimer() {
       if (timeLeft <= 0) {
         clearInterval(timerId);
         timerId = null;
-        alert("Tempo esgotado! 🎉");
+        console.log("Playing level-up sound");
+        levelUpSound.play();
+        showNotification("Meus Parabéns! 🎉", "Pode relaxar... ");
         switchMode(currentMode === "work" ? "short-break" : "work");
         startTimer();
       }
@@ -65,6 +85,14 @@ function resetTimer() {
   timerId = null;
   timeLeft = modes[currentMode].time * 60;
   updateTimerDisplay();
+  console.log("Playing button sound");
+  buttonSound.play();
+}
+
+function showNotification(title, body) {
+  if (Notification.permission === "granted") {
+    new Notification(title, { body });
+  }
 }
 
 function updateTimerDisplay() {
@@ -129,19 +157,43 @@ function renderGroupTabs(groups) {
   const allTab = document.createElement("button");
   allTab.textContent = "Todas";
   allTab.className = "group-tab";
-  allTab.onclick = () => renderTasks(loadTasks());
+  allTab.onclick = () => {
+    renderTasks(loadTasks());
+    highlightSelectedGroup(allTab);
+    document.getElementById("group-select").value = "Todas";
+  };
   groupTabs.appendChild(allTab);
 
   groups.forEach((group) => {
     const tab = document.createElement("div");
     tab.className = "group-tab-container";
     tab.innerHTML = `
-      <button class="group-tab" onclick="renderTasks(loadTasks().filter((task) => task.group === '${group}'))">
+      <button class="group-tab" onclick="toggleGroupTab(this, '${group}')">
         ${group} <span class="delete-group" onclick="deleteGroup('${group}')">x</span>
       </button>
     `;
     groupTabs.appendChild(tab);
   });
+}
+
+function toggleGroupTab(tab, group) {
+  if (tab.classList.contains("selected")) {
+    tab.classList.remove("selected");
+    renderTasks(loadTasks());
+    document.getElementById("group-select").value = "Todas";
+  } else {
+    const tabs = document.querySelectorAll(".group-tab");
+    tabs.forEach((t) => t.classList.remove("selected"));
+    tab.classList.add("selected");
+    renderTasks(loadTasks().filter((task) => task.group === group));
+    document.getElementById("group-select").value = group;
+  }
+}
+
+function highlightSelectedGroup(selectedTab) {
+  const tabs = document.querySelectorAll(".group-tab");
+  tabs.forEach((tab) => tab.classList.remove("selected"));
+  selectedTab.classList.add("selected");
 }
 
 // Tasks - Interface (updated)
@@ -154,7 +206,7 @@ document.getElementById("task-form").addEventListener("submit", (e) => {
 
   if (taskText) {
     const tasks = loadTasks();
-    tasks.push({ task: taskText, group: groupName, completed: false });
+    tasks.unshift({ task: taskText, group: groupName, completed: false }); // Add new task to the top
     saveTasks(tasks);
     taskInput.value = "";
     renderTasks(tasks);
@@ -180,14 +232,41 @@ function renderTasks(tasks) {
   taskList.innerHTML =
     tasks.length > 0 ? "" : '<li class="empty">Nenhuma tarefa ainda!</li>';
 
-  tasks.forEach((task, index) => {
+  // Separate completed and incomplete tasks
+  const incompleteTasks = tasks.filter((task) => !task.completed);
+  const completedTasks = tasks.filter((task) => task.completed);
+
+  // Render incomplete tasks first
+  incompleteTasks.forEach((task, index) => {
     const li = document.createElement("li");
     li.className = task.completed ? "completed" : "";
     li.innerHTML = `
             <span>${task.task} (${task.group})</span>
             <div class="task-actions">
-                <button class="complete-btn" onclick="toggleTask(${index})">✓</button>
-                <button class="delete-btn" onclick="deleteTask(${index})">🗑️</button>
+                <button class="complete-btn" onclick="toggleTask(${tasks.indexOf(
+                  task
+                )})">✓</button>
+                <button class="delete-btn" onclick="deleteTask(${tasks.indexOf(
+                  task
+                )})">🗑️</button>
+            </div>
+        `;
+    taskList.appendChild(li);
+  });
+
+  // Render completed tasks at the bottom
+  completedTasks.forEach((task, index) => {
+    const li = document.createElement("li");
+    li.className = task.completed ? "completed" : "";
+    li.innerHTML = `
+            <span>${task.task} (${task.group})</span>
+            <div class="task-actions">
+                <button class="complete-btn" onclick="toggleTask(${tasks.indexOf(
+                  task
+                )})">✓</button>
+                <button class="delete-btn" onclick="deleteTask(${tasks.indexOf(
+                  task
+                )})">🗑️</button>
             </div>
         `;
     taskList.appendChild(li);
@@ -225,4 +304,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderGroupTabs(groups);
   renderTasks(loadTasks());
   fetchWeather();
+  document.getElementById("group-select").value = "Todas"; // Set default group selection to "Todas"
 });

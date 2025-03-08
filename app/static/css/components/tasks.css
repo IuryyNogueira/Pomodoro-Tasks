@@ -2,7 +2,7 @@
 
 /* Variáveis globais */
 :root {
-  --primary-color: #0073ff;
+  --primary-color: #368ffb;
   --cinnamoroll-blue: #00aaff; /* Ajuste conforme sua paleta */
   --border-radius: 12px;
   --box-shadow-light: 0 8px 20px rgba(0, 0, 0, 0.05);
@@ -27,7 +27,7 @@
   display: flex;
   gap: 15px;
   margin-bottom: 25px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Change from wrap to nowrap */
 }
 
 #task-input {
@@ -57,6 +57,67 @@
   gap: 8px;
 }
 
+/* Group Form */
+.group-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 480px) {
+  .group-form {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .group-form {
+    order: 2; /* Move group form below tasks */
+    width: 100%; /* Ensure full width */
+    flex-direction: row; /* Ensure input and button are side by side */
+    gap: 5px; /* Adjust gap as needed */
+  }
+
+  #tasks {
+    order: 1; /* Ensure tasks are above group form */
+  }
+
+  #task-form {
+    flex-direction: row; /* Ensure row direction */
+    gap: 5px; /* Adjust gap as needed */
+  }
+
+  #task-form button {
+    padding: 5px 10px;
+    font-size: 0.8em;
+  }
+}
+
+/* Placeholder adjustments */
+#group-input::placeholder {
+  font-size: 0.9em;
+  color: #999;
+}
+
+@media (max-width: 480px) {
+  #group-input::placeholder {
+    font-size: 0.8em;
+  }
+}
+
+/* Highlight selected group button */
+.group-tab.selected {
+  background-color: var(--primary-color);
+  color: white;
+}
+
 /* Lista de tarefas */
 #tasks li {
   display: flex;
@@ -72,6 +133,21 @@
 
 #tasks li:hover {
   transform: translateX(5px);
+}
+
+/* Task buttons hover effect */
+.task-actions button {
+  background-color: var(--cinnamoroll-blue);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed) ease;
+}
+
+.task-actions button:hover {
+  background-color: var(--primary-color); /* Cinnamoroll blue */
 }
 
 /* Animação para entrada de itens */

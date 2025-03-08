@@ -180,7 +180,7 @@ body {
 .task-actions button:hover,
 #task-form button:hover,
 #group-form button:hover {
-  background-color: #00acc1; /* Slightly darker cyan blue */
+  background-color: #006ac6; /* Slightly darker cyan blue */
 }
 
 .content {
@@ -242,5 +242,5 @@ body {
 }
 
 .group-form button:hover {
-  background-color: #00acc1;
+  background-color: #006ac6;
 }

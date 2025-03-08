@@ -10,6 +10,11 @@
       href="{{ url_for('static', filename='images/new-icon.ico') }}"
       type="image/x-icon"
     />
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
   </head>
   <body class="work-mode">
     <div class="background"></div>
@@ -53,8 +58,8 @@
         </div>
         <form id="task-form">
           <input type="text" id="task-input" placeholder="Nova tarefa..." />
-          <select id="group-select">
-            <option value="General">Geral</option>
+          <select id="group-select" class="hidden">
+            <option value="Todas">Todas</option>
             <!-- Additional groups will be added here dynamically -->
           </select>
           <button type="submit">+</button>
