@@ -3,7 +3,7 @@
   border-radius: 25px;
   padding: 40px;
   margin: 30px auto;
-  max-width: 450px;
+  max-width: 600px; /* Increase max-width */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(5px);
   display: flex;
@@ -25,6 +25,8 @@
   justify-content: center;
   gap: 25px;
   margin-bottom: 25px;
+  width: 100%; /* Ensure full width */
+  text-align: center; /* Center align */
 }
 
 .timer-controls button {
@@ -43,18 +45,33 @@
   transform: scale(1.05);
 }
 
+.timer-controls button.start.active {
+  background: #006ac6; /* Darker cyan blue */
+  transform: scale(1.05);
+}
+
 .mode-buttons {
   display: flex;
-  gap: 10px;
+  gap: 25px; /* Match gap with timer-controls */
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 5px; /* Add margin-top for spacing */
 }
 
 .mode-buttons button {
   background: rgba(255, 255, 255, 0.9);
   border: 2px solid var(--cinnamoroll-blue);
-  padding: 8px 20px;
-  border-radius: 12px;
+  padding: 8px 20px; /* Further reduce padding */
+  border-radius: 20px; /* Match border-radius with timer-controls */
   color: var(--cinnamoroll-blue);
   cursor: pointer;
+  display: flex;
+  flex-direction: column; /* Ensure emoji is on the line below */
+  align-items: center;
+  font-size: 0.9em; /* Further reduce font-size */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mode-buttons button:hover {
+  background: #e0f7fa; /* Light cyan background */
+  transform: scale(1.05);
 }

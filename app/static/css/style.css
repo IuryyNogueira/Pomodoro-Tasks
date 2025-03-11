@@ -244,3 +244,78 @@ body {
 .group-form button:hover {
   background-color: #006ac6;
 }
+
+.settings-button-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.settings-button-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.settings-button {
+  background: none;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  color: #888; /* Lighter color for a more discreet look */
+  padding: 0; /* Remove padding */
+  transition: color 0.3s;
+}
+
+.settings-button:hover {
+  color: #555; /* Darker color on hover */
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+  padding-top: 4px;
+  padding-bottom: 30px !important; /* Adjust padding for better spacing */
+}
+
+.settings.hidden {
+  display: none !important; /* Ensure the settings section is hidden */
+}
+
+.settings-divider {
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+.settings input {
+  padding: 6px; /* Decrease padding */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem; /* Decrease font size */
+  width: 100%; /* Adjust width to 100% */
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.settings input:focus {
+  outline: none;
+  border-color: #999;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.settings button {
+  background-color: var(--cinnamoroll-blue);
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Increase padding */
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.settings button:hover {
+  background-color: #006ac6;
+}

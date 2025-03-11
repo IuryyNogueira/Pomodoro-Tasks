@@ -27,15 +27,32 @@
     <div class="content">
       <!-- Pomodoro -->
       <div class="pomodoro-box">
+        <!-- Ensure full width -->
         <div class="timer" id="timer">25:00</div>
         <div class="timer-controls">
-          <button class="timer-button" onclick="startTimer()">Start</button>
+          <button class="timer-button start" onclick="startTimer()">
+            Start
+          </button>
           <button class="timer-button" onclick="resetTimer()">Reset</button>
         </div>
+        <div class="settings-button-wrapper">
+          <button class="settings-button" onclick="toggleSettings()">⚙️</button>
+        </div>
+        <div id="settings" class="settings hidden">
+          <label for="work-time">Trabalho :</label>
+          <input type="number" id="work-time" value="25" />
+          <label for="short-break-time">Descanso :</label>
+          <input type="number" id="short-break-time" value="5" />
+          <label for="long-break-time">Descanso Longo :</label>
+          <input type="number" id="long-break-time" value="15" />
+          <button onclick="saveSettings()">Salvar</button>
+        </div>
         <div class="mode-buttons">
-          <button onclick="switchMode('work')">Trabalho ☁️</button>
-          <button onclick="switchMode('short-break')">Descanso 🛏️</button>
-          <button onclick="switchMode('long-break')">Descanso Longo 🌙</button>
+          <button onclick="switchMode('work')">Trabalho<br />☁️</button>
+          <button onclick="switchMode('short-break')">Descanso<br />🛏️</button>
+          <button onclick="switchMode('long-break')">
+            Descanso Longo<br />🌙
+          </button>
         </div>
       </div>
 
@@ -64,8 +81,7 @@
           </select>
           <button type="submit">+</button>
         </form>
-        <ul id="tasks">
-        </ul>
+        <ul id="tasks"></ul>
       </div>
     </div>
 

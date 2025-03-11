@@ -63,6 +63,7 @@ function startTimer() {
   if (!timerId) {
     console.log("Playing button sound");
     buttonSound.play();
+    document.querySelector(".timer-button.start").classList.add("active"); // Mark start button as active
     timerId = setInterval(() => {
       timeLeft--;
       updateTimerDisplay();
@@ -70,6 +71,9 @@ function startTimer() {
       if (timeLeft <= 0) {
         clearInterval(timerId);
         timerId = null;
+        document
+          .querySelector(".timer-button.start")
+          .classList.remove("active"); // Remove active class
         console.log("Playing level-up sound");
         levelUpSound.play();
         showNotification("Meus Parabéns! 🎉", "Pode relaxar... ");
@@ -87,6 +91,7 @@ function resetTimer() {
   updateTimerDisplay();
   console.log("Playing button sound");
   buttonSound.play();
+  document.querySelector(".timer-button.start").classList.remove("active"); // Remove active class
 }
 
 function showNotification(title, body) {
@@ -305,4 +310,51 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTasks(loadTasks());
   fetchWeather();
   document.getElementById("group-select").value = "Todas"; // Set default group selection to "Todas"
+  document.getElementById("work-time").value = modes.work.time;
+  document.getElementById("short-break-time").value = modes["short-break"].time;
+  document.getElementById("long-break-time").value = modes["long-break"].time;
+
+  // Preload images
+  preloadImages([
+    "/static/images/sleeping-cat.gif",
+    "/static/images/clouds.png",
+    "/static/images/tardeN.png",
+    "/static/images/tardE.png",
+    "/static/images/nightT.png",
+    "/static/images/night.gif",
+  ]);
 });
+
+function toggleSettings() {
+  const settings = document.getElementById("settings");
+  settings.classList.toggle("hidden");
+}
+
+function saveSettings() {
+  const workTime = parseInt(document.getElementById("work-time").value, 10);
+  const shortBreakTime = parseInt(
+    document.getElementById("short-break-time").value,
+    10
+  );
+  const longBreakTime = parseInt(
+    document.getElementById("long-break-time").value,
+    10
+  );
+
+  if (workTime > 0 && shortBreakTime > 0 && longBreakTime > 0) {
+    modes.work.time = workTime;
+    modes["short-break"].time = shortBreakTime;
+    modes["long-break"].time = longBreakTime;
+    resetTimer();
+    toggleSettings();
+  } else {
+    alert("Por favor, insira valores válidos.");
+  }
+}
+
+function preloadImages(imageUrls) {
+  imageUrls.forEach((url) => {
+    const img = new Image();
+    img.src = url;
+  });
+}
