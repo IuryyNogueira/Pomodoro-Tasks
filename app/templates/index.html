@@ -25,64 +25,64 @@
     </header>
 
     <div class="content">
-      <!-- Pomodoro -->
-      <div class="pomodoro-box">
-        <!-- Ensure full width -->
-        <div class="timer" id="timer">25:00</div>
-        <div class="timer-controls">
-          <button class="timer-button start" onclick="startTimer()">
-            Start
-          </button>
-          <button class="timer-button" onclick="resetTimer()">Reset</button>
+        <!-- Pomodoro -->
+        <div class="pomodoro-box">
+          <!-- Ensure full width -->
+          <div class="timer" id="timer">25:00</div>
+          <div class="timer-controls">
+            <button class="timer-button start" onclick="startTimer()">
+              Start
+            </button>
+            <button class="timer-button" onclick="resetTimer()">Reset</button>
+          </div>
+          <div class="settings-button-wrapper">
+            <button class="settings-button" onclick="toggleSettings()">⚙️</button>
+          </div>
+          <div id="settings" class="settings hidden">
+            <label for="work-time">Trabalho :</label>
+            <input type="number" id="work-time" value="25" />
+            <label for="short-break-time">Descanso :</label>
+            <input type="number" id="short-break-time" value="5" />
+            <label for="long-break-time">Descanso Longo :</label>
+            <input type="number" id="long-break-time" value="15" />
+            <button onclick="saveSettings()">Salvar</button>
+          </div>
+          <div class="mode-buttons">
+            <button onclick="switchMode('work')">Trabalho<br />☁️</button>
+            <button onclick="switchMode('short-break')">Descanso<br />🛏️</button>
+            <button onclick="switchMode('long-break')">
+              Descanso Longo<br />🌙
+            </button>
+          </div>
         </div>
-        <div class="settings-button-wrapper">
-          <button class="settings-button" onclick="toggleSettings()">⚙️</button>
-        </div>
-        <div id="settings" class="settings hidden">
-          <label for="work-time">Trabalho :</label>
-          <input type="number" id="work-time" value="25" />
-          <label for="short-break-time">Descanso :</label>
-          <input type="number" id="short-break-time" value="5" />
-          <label for="long-break-time">Descanso Longo :</label>
-          <input type="number" id="long-break-time" value="15" />
-          <button onclick="saveSettings()">Salvar</button>
-        </div>
-        <div class="mode-buttons">
-          <button onclick="switchMode('work')">Trabalho<br />☁️</button>
-          <button onclick="switchMode('short-break')">Descanso<br />🛏️</button>
-          <button onclick="switchMode('long-break')">
-            Descanso Longo<br />🌙
-          </button>
-        </div>
-      </div>
 
-      <!-- Lista de Tarefas -->
-      <div class="task-box" style="width: 80%">
-        <div class="task-header">
-          <h2 class="task-title">✨Tarefas</h2>
-          <form id="group-form" class="group-form">
-            <input
-              type="text"
-              id="group-input"
-              placeholder="Nome novo grupo..."
-            />
+        <!-- Lista de Tarefas -->
+        <div class="task-box" style="width: 80%">
+          <div class="task-header">
+            <h2 class="task-title">✨Tarefas</h2>
+            <form id="group-form" class="group-form">
+              <input
+                type="text"
+                id="group-input"
+                placeholder="Nome novo grupo..."
+              />
+              <button type="submit">+</button>
+            </form>
+          </div>
+
+          <div class="group-tabs" id="group-tabs">
+            <!-- Group tabs will be added here dynamically -->
+          </div>
+          <form id="task-form">
+            <input type="text" id="task-input" placeholder="Nova tarefa..." />
+            <select id="group-select" class="hidden">
+              <option value="Todas">Todas</option>
+              <!-- Additional groups will be added here dynamically -->
+            </select>
             <button type="submit">+</button>
           </form>
+          <ul id="tasks"></ul>
         </div>
-
-        <div class="group-tabs" id="group-tabs">
-          <!-- Group tabs will be added here dynamically -->
-        </div>
-        <form id="task-form">
-          <input type="text" id="task-input" placeholder="Nova tarefa..." />
-          <select id="group-select" class="hidden">
-            <option value="Todas">Todas</option>
-            <!-- Additional groups will be added here dynamically -->
-          </select>
-          <button type="submit">+</button>
-        </form>
-        <ul id="tasks"></ul>
-      </div>
     </div>
 
     <!-- Gatinho Dormindo -->

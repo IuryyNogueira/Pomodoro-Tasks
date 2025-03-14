@@ -135,6 +135,34 @@
   transform: translateX(5px);
 }
 
+#tasks li.completed {
+  background-color: #d3d3d3; /* Light gray background */
+  color: #888; /* Gray text color */
+  position: relative;
+}
+
+#tasks li.completed::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 10px; /* Add some padding from the left */
+  right: 10px; /* Add some padding from the right */
+  height: 2px; /* Increase the height for better visibility */
+  background-color: #888; /* Gray line color */
+  opacity: 0.5; /* Reduce opacity for subtle effect */
+  border-radius: 20px; /* Round the corners */
+  transform: translateY(-50%);
+}
+
+#tasks li.completed .task-actions button {
+  background-color: #a9a9a9; /* Darker gray for buttons */
+  color: #fff; /* White text color for buttons */
+}
+
+#tasks li.completed .task-actions button:hover {
+  background-color: #888; /* Slightly darker gray on hover */
+}
+
 /* Task buttons hover effect */
 .task-actions button {
   background-color: var(--cinnamoroll-blue);
@@ -148,6 +176,78 @@
 
 .task-actions button:hover {
   background-color: var(--primary-color); /* Cinnamoroll blue */
+}
+
+/* Pomodoro button styles */
+.task-actions .pomodoro-btn {
+  background-color: #f39c12; /* cor laranja */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed) ease;
+}
+
+.task-actions .pomodoro-btn:hover {
+  background-color: #e67e22;
+}
+
+.task-actions .pomodoro-counter {
+  margin-left: 8px;
+  font-weight: bold;
+}
+
+/* Adjust task actions */
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adjust gap as needed */
+}
+
+.task-actions .increment-btn,
+.task-actions .decrement-btn,
+.task-actions .pomodoro-counter {
+  order: -1; /* Move to the left of the complete button */
+}
+
+.task-actions .increment-btn,
+.task-actions .decrement-btn {
+  background-color: #f39c12; /* cor laranja */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0px;
+  border-radius: var(--border-radius);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-speed) ease;
+}
+
+.task-actions .increment-btn {
+  font-size: 0.6em; /* Reduce font size */
+  margin-left: 8px; /* Move to the right */
+  width: 24px; /* Reduce width */
+  height: 24px; /* Reduce height */
+}
+
+.task-actions .decrement-btn {
+  font-size: 0.9em; /* Reduce font size */
+  width: 25px; /* Reduce width */
+  height: 25px; /* Reduce height */
+}
+
+.task-actions .increment-btn:hover,
+.task-actions .decrement-btn:hover {
+  background-color: #e67e22;
+}
+
+.task-actions .pomodoro-counter {
+  margin: 0 8px; /* Adjust margin for better spacing */
+  font-weight: bold;
+  font-size: 1.2em; /* Increase font size */
 }
 
 /* Animação para entrada de itens */

@@ -211,10 +211,15 @@ document.getElementById("task-form").addEventListener("submit", (e) => {
 
   if (taskText) {
     const tasks = loadTasks();
-    tasks.unshift({ task: taskText, group: groupName, completed: false }); // Add new task to the top
+    tasks.unshift({
+      task: taskText,
+      group: groupName,
+      completed: false,
+      pomodoros: 0, // contador iniciado em 0
+    });
     saveTasks(tasks);
     taskInput.value = "";
-    renderTasks(tasks);
+    renderTasks(tasks.filter((task) => task.group === groupName)); // Filter tasks by selected group
   }
 });
 
@@ -241,64 +246,50 @@ function renderTasks(tasks) {
   const incompleteTasks = tasks.filter((task) => !task.completed);
   const completedTasks = tasks.filter((task) => task.completed);
 
-  // Render incomplete tasks first
-  incompleteTasks.forEach((task, index) => {
-    const li = document.createElement("li");
-    li.className = task.completed ? "completed" : "";
-    li.innerHTML = `
-            <span>${task.task} (${task.group})</span>
-            <div class="task-actions">
-                <button class="complete-btn" onclick="toggleTask(${tasks.indexOf(
-                  task
-                )})">✓</button>
-                <button class="delete-btn" onclick="deleteTask(${tasks.indexOf(
-                  task
-                )})">🗑️</button>
-            </div>
-        `;
-    taskList.appendChild(li);
+  // Helper function to render each task item
+  function renderTaskItem(task) {
+    const index = tasks.indexOf(task);
+    return `
+      <li class="${task.completed ? "completed" : ""}">
+        <span>${task.task} (${task.group})</span>
+        <div class="task-actions">
+            <button class="increment-btn" onclick="incrementPomodoro(${index})">+</button>
+            <span class="pomodoro-counter">${task.pomodoros || 0}</span>
+            <button class="decrement-btn" onclick="decrementPomodoro(${index})">-</button>
+            <button class="complete-btn" onclick="toggleTask(${index})">✓</button>
+            <button class="delete-btn" onclick="deleteTask(${index})">🗑️</button>
+        </div>
+      </li>
+    `;
+  }
+
+  // Render incomplete tasks
+  incompleteTasks.forEach((task) => {
+    taskList.innerHTML += renderTaskItem(task);
   });
 
-  // Render completed tasks at the bottom
-  completedTasks.forEach((task, index) => {
-    const li = document.createElement("li");
-    li.className = task.completed ? "completed" : "";
-    li.innerHTML = `
-            <span>${task.task} (${task.group})</span>
-            <div class="task-actions">
-                <button class="complete-btn" onclick="toggleTask(${tasks.indexOf(
-                  task
-                )})">✓</button>
-                <button class="delete-btn" onclick="deleteTask(${tasks.indexOf(
-                  task
-                )})">🗑️</button>
-            </div>
-        `;
-    taskList.appendChild(li);
+  // Render completed tasks
+  completedTasks.forEach((task) => {
+    taskList.innerHTML += renderTaskItem(task);
   });
 }
 
-// Weather - Fetch and Display
-function fetchWeather() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords;
-      fetch(`/weather?lat=${latitude}&lng=${longitude}`)
-        .then((response) => response.json())
-        .then((data) => {
-          const weatherInfo = document.getElementById("weather-info");
-          weatherInfo.innerHTML = `
-            <p>Cidade: ${data.city}</p>
-            <p>Temperatura: ${data.temperature}°C</p>
-            <p>Previsão: ${data.forecast.description}</p>
-          `;
-        })
-        .catch((error) => {
-          console.error("Erro ao buscar clima:", error);
-        });
-    });
-  } else {
-    console.error("Geolocalização não é suportada pelo navegador.");
+function incrementPomodoro(index) {
+  const tasks = loadTasks();
+  if (!tasks[index].pomodoros) {
+    tasks[index].pomodoros = 0;
+  }
+  tasks[index].pomodoros++;
+  saveTasks(tasks);
+  renderTasks(tasks);
+}
+
+function decrementPomodoro(index) {
+  const tasks = loadTasks();
+  if (tasks[index].pomodoros > 0) {
+    tasks[index].pomodoros--;
+    saveTasks(tasks);
+    renderTasks(tasks);
   }
 }
 
@@ -308,7 +299,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderGroups(groups);
   renderGroupTabs(groups);
   renderTasks(loadTasks());
-  fetchWeather();
   document.getElementById("group-select").value = "Todas"; // Set default group selection to "Todas"
   document.getElementById("work-time").value = modes.work.time;
   document.getElementById("short-break-time").value = modes["short-break"].time;

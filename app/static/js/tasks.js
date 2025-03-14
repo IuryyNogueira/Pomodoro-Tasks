@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const taskForm = document.getElementById("task-form");
   const groupForm = document.getElementById("group-form");
-  const taskList = document.getElementById("task-list");
+  const taskList = document.getElementById("tasks"); // Corrected element ID
   const groupSelect = document.getElementById("group-select");
 
   taskForm.addEventListener("submit", function (event) {
